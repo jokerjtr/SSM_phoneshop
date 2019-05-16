@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jtr.shop.mapper.AdminMapper">
+     <!--查询用户是否存在  -->
+     <select id="findByUser" parameterType="com.jtr.shop.Domain.Admin" resultType="com.jtr.shop.Domain.Admin">
+              SELECT * FROM Admins WHERE admin_name=#{admin_name} and admin_password=#{admin_password}
+     </select>
+     <!--更新时间  -->
+     <update id="Updatetiem" parameterType="com.jtr.shop.Domain.Admin">
+          UPDATE Admins SET predate=#{predate} WHERE admin_name=#{admin_name}
+     </update>
+     <!-- 更改用户密码 -->
+     <update id="updatepsd" parameterType="com.jtr.shop.Domain.Admin">
+         UPDATE admins SET admin_password=#{admin_password} WHERE id=#{id}
+     </update>
+     <!-- 根据用户id和密码确认用户身份 -->
+     <select id="findAdminByIdAndPsd" parameterType="com.jtr.shop.Domain.Admin" resultType="com.jtr.shop.Domain.Admin">
+         SELECT * FROM admins WHERE id=#{id} and admin_password=#{admin_password};
+     </select>
+     
+</mapper>

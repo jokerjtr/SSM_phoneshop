@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jtr.shop.mapper.ordersoperatorMapper">
+     <!-- 查找订单信息 -->
+     <select id="findordersmessage" parameterType="com.jtr.shop.Domain.ordersoperator" resultType="com.jtr.shop.Domain.ordersoperator">
+         select orders.order_id as orderid,orders.goods_id as goodsid,goods.goods_name as goodsname,band.band_name as bandname,orders.remark as remark,orders.goods_number as goodsnumber,goods.goods_stock-goods.sale_number as goodsstock,goods.goods_price as goodsprice,orders.pay_type as paytype,address.addr_detail as address FROM band,goods,orders,address 
+         <where>
+            <if test='showbandname!="*"'>
+              and band.band_name=#{showbandname}
+            </if>
+          and band.band_id=goods.band_id 
+          and goods.goods_id=orders.goods_id 
+          and orders.addr_id=address.addr_id
+          and orders.orders_status=0
+          LIMIT #{page.statrIndex},#{page.pageSize}
+         </where>
+        
+     </select>
+     <!-- 查找要处理的订单总数-->
+     <select id="findOrderNumber" parameterType="java.lang.String" resultType="java.lang.Integer">
+          SELECT COUNT(*) FROM orders,goods,band 
+          <where>
+               <if test='_parameter!="*"'>
+                  and band.band_name=#{showbandname}
+               </if>
+                and band.band_id=goods.band_id 
+                and goods.goods_id=orders.goods_id  
+                and orders.orders_status=0
+          </where>
+          
+     </select>
+</mapper>

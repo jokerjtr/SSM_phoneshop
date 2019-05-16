@@ -1,0 +1,234 @@
+<html>
+<head>
+<title>购物车</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<style>
+.div1{
+    width:78%;
+	height:100px;
+	border:1px solid #ffffff;
+    
+	
+}
+.div2{
+    width:100px;
+	height:50%;
+	float:left;
+	
+	
+}
+.lis{
+    float:left;
+	line-height:20px;
+	position:relative;
+	list-style:none;
+	margin-left:5px;
+}
+.font_set
+{    
+   color:#000000;
+   font-size:10px;
+}
+a{ text-decoration:none;
+}
+a:hover font{
+   color:red;
+}
+ul li{
+list-style:none;
+float:left;
+margin-left:50px;
+
+
+
+}
+ul li a{
+  color:#ffffff;
+}
+.listyle{
+  width:80px;
+  
+}
+.imgstyle{
+   width:90%;
+   height:90%;
+}
+.shopli
+{
+   width:15%;
+   height:48%;
+   border:1px solid #ccc;
+   margin-left:10px;
+   margin-top:10px;
+}
+.dd{
+   float:left;
+   color:#fffff
+  
+}
+.dl{
+   padding-top:5px;
+}
+font{
+   color:#ffffff;
+}
+.div_cat{
+     width:78%;
+	 height:100px;
+	 border:1px solid #ffffff;
+	 overflow:auto;
+	 margin-top:10px;
+	
+}
+.div_cat1{
+     width:78%;
+	 height:50px;
+	 border:1px solid #ffffff;
+	 overflow:auto;
+	 margin-top:10px;
+	
+}
+.div_cat2{
+     width:78%;
+	 height:30px;
+	 border-top:1px dashed #EEE0E5;
+	  border-bottom:1px dashed #EEE0E5;
+	 margin-top:10px;
+	 margin-bottom:10px;
+
+}
+#button{
+   background-color:#FF3030
+}
+</style>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+<script>
+ 
+
+
+</script>
+</head>
+<body>
+
+    <center>
+   <div class="div1">
+      <!--logo-->
+       <div class="div2">
+	       <a href="" alt="金风细雨" title="金风细雨楼">
+	          <img src="image\index_head\logo.jpg" style="width:100%;height:100%"/>
+	       </a>
+		</div>
+	         <!--logo-->
+	    <div class="div2" style="width:40%;margin-left:10px">
+		     <img src="image\index_head\header.jpg" style="width:100%;height:100%"/>
+		</div>
+	    <div class="div2" style="float:right;width:40%;">
+		   <!-- 登陆注册-->
+		    <div style="width:90%;height:50%;float:right;" class="div2">
+			     <ul style="float:left;margin-top:0px;">
+				    <li class="lis"><a href="#"><font class="font_set">登录 | </font></a></li>
+					<li class="lis"><a href=""><font class="font_set">注册 | </font></a></li>
+					<li class="lis"><a href=""><font class="font_set">会员中心 | </font></a></li>
+					 <li class="lis"><a href=""><font class="font_set">购物指南 | </font></a></li>
+					 <li class="lis"><a href=""><font class="font_set">关于我们 </font></a></li>
+				 </ul>
+			
+			</div>
+		    <div style="width:90%;height:40%;float:right" class="div2">
+			        <!-- 购物车-->
+					<div style="width:70%;height:100%;float:right" class="div2">
+					      <div style="background-color:#F8F8FF">电话热线:&nbsp;&nbsp;<strong>18711807001</strong></div>
+					</div>
+					<!--热线电话-->
+					<div style="width:20%;height:100%;float:right" class="div2">
+					   <div style="width:100%;height:100%">
+					       <img src="image\index_head\gowuche.png" style="width:20px;height:20px;"/>
+						   <a href=""><font class="font_set">购物车</font></a>
+					   </div>
+					</div>
+			</div>
+			
+		</div>
+		<!--一级导航栏-->
+		<div style="border:1px solid #ffffff;width:100%;height:50%;margin-top:50px;background-color:#000000">
+		    <ul>
+				  <li class="listyle"><a href="">  首页   |</a></li>
+				    <li class="listyle"><a href="">   手机   |</a></li>
+					<li class="listyle"><a href="">    家电  |</a></li>
+					<li class="listyle"><a href="">   数码产品  |</a></li>
+				    <li class="listyle"><a href="">   电视  |</a></li>
+					<li class="listyle"><a href="">   电脑  |</a></li>
+				 </ul>
+		</div>
+   </div>
+      <div class="div_cat">
+	      	<table  border="1" style="float:left;width:100%;">
+					<tbody><tr>
+						<th align="left">图片</th>
+						<th align="left">商品</th>
+						<th align="left">机身颜色</th>
+						<th align="left">价格</th>
+						<th align="left">数量</th>
+						<th align="left">小计</th>
+						<th align="left">操作</th>
+					</tr>
+						<tr>
+							<td width="60">
+								<input type="hidden" name="id" value="22">
+								<img src="./image/dadonggua.jpg">
+							</td>
+							<td>
+								<a target="_blank"> 有机蔬菜      大冬瓜...</a>
+							</td>
+							<td>
+								<a target="_blank"> 金色</a>
+							</td>
+							<td>
+								￥298.00
+							</td>
+							<td class="quantity" width="60">
+								1
+							</td>
+							
+							<td width="140">
+								<span class="subtotal">￥596.00</span>
+							</td>
+							<td>
+								<a href="javascript:;" class="delete">删除</a>
+							</td>
+						</tr>
+						
+						
+				</tbody></table>
+	  </div>
+	  
+	  <div class="div_cat1">
+	       <span style="float:right"><em style="color:#FFC125">登录后确认是否享有优惠</em>&nbsp;&nbsp;&nbsp;&nbsp;
+		   商品金额:<em id="money"><strong style="color:red">￥</strong><strong id="money" style="color:red">5555</strong></em></span>
+	  </div>
+	  <div class="div_cat2">
+	        <span style="float:right"><a href="">清空购物车</a><button id="button">提交订单</button></span>
+	  </div>
+     <div style="width:78%;height:30px;border:1px solid #ffffff;margin-top:10px;background-color:#C7C7C7">
+	      <div style="width:90%;height:100%;border:1px solid #ffffff;">
+		    <dl style="margin-left:100px;margin-top:10px">
+			    <dt style="float:left;background-color:#8F8F8F"><a href=""><font>购物指南   |</font></a></dt>
+				 <dd class="dd"><a href=""><font>支付方式      |</font></a></dd>
+				 <dd class="dd"><a href=""><font>配送方式      |</font></a></dd>
+				 <dd class="dd"><a href=""><font>销售方式      |</font></a></dd>
+			</dl>
+			  
+		  </div>
+	 
+	 </div>
+      <div style="width:78%;height:100px;border:1px solid #fffff;margin-top:10px #ccc;">
+	      <footer>
+		     <img src="image\index_head\footer.jpg"/>
+			 <div style>Copyright © 2018-2019 author lihuizhi</div>
+		  </footer>
+	  </div>
+   
+   </center>
+</body>
+</html>

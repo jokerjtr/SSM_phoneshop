@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jtr.shop.mapper.BandMapper">
+<!-- 查询所有品牌 --> 
+<select id="findBand" resultType="com.jtr.shop.Domain.Band">
+     select * FROM band
+</select>
+    <!--  根据band_id来查band_name-->
+    <select id="findBandname" parameterType="java.lang.Integer" resultType="java.lang.String">
+         SELECT band_name FROM band WHERE band_id=#{band_id}
+    </select>
+     <!-- 插入品牌 -->
+     <insert id="insertband" parameterType="com.jtr.shop.Domain.Band">
+         INSERT INTO band(band_name,en_name) VALUES(#{band_name},#{en_name})
+     </insert>
+</mapper>

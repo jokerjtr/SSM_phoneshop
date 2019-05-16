@@ -1,0 +1,279 @@
+<html>
+<head>
+<title>购买手机界面</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<!--<link type="text/css" rel="styleSheet"  href="mayshop.css"/>-->
+<style>
+.div1{
+    width:78%;
+	height:100px;
+	border:1px solid #ffffff;
+    
+	
+}
+.div2{
+    width:100px;
+	height:50%;
+	float:left;
+	
+	
+}
+.lis{
+    float:left;
+	line-height:20px;
+	position:relative;
+	list-style:none;
+	margin-left:5px;
+}
+.font_set
+{    
+   color:#000000;
+   font-size:10px;
+}
+a{ text-decoration:none;
+}
+a:hover font{
+   color:red;
+}
+ul li{
+list-style:none;
+float:left;
+margin-left:50px;
+
+
+
+}
+ul li a{
+  color:#ffffff;
+}
+.listyle{
+  width:80px;
+  
+}
+.imgstyle{
+   width:90%;
+   height:90%;
+}
+.shopli
+{
+   width:15%;
+   height:48%;
+   border:1px solid #ccc;
+   margin-left:10px;
+   margin-top:10px;
+}
+.dd{
+   float:left;
+   color:#fffff
+  
+}
+.dl{
+   padding-top:5px;
+}
+font{
+   color:#ffffff;
+}
+.search{
+    width:78%;
+	height:50px;
+	padding-top:10px;
+	
+}
+.daohang{
+    width:78%;
+	height:60px;
+	border:1px solid #ccc;
+	
+}
+.daohang dl{
+float:left;
+
+
+margin-top:5px;
+}
+.daohang dl dt{
+float:left;
+font-size:15px;
+
+width:100px;
+height:30px;
+background-color:#ccc;
+}
+.daohang dl dd{
+float:left;
+margin:0px;
+font-size:10px;
+width:50px;
+height:30px;
+border:1px solid #ccc;
+}
+.shop{
+  width:78%;height:700px;border:1px solid #ccc;margin-top:5px;
+}
+.shop ul{
+width:100%;height:100%;margin-top:0px;float:left;margin-left:5px;
+}
+.shop ul li{
+border:1px solid #ccc;width:20%;height:30%;
+margin-top:5px;
+margin-left:15px;
+}
+.shop ul li div{
+  width:95%;height:75%;
+}
+</style>
+
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+<script>
+  $(document).ready(function(){
+     $("li.listyle").mouseover(function(){
+	   $(this).css("background-color","#E0E0E0")
+	 });
+	$("li.listyle").mouseout(function(){
+	   $(this).css("background-color","#000000")
+	 });
+	 <!--图片效果-->
+	 $("li.shopli").mouseover(function(){
+	       $(this).css("background-color","#E0E0E0")
+	 });
+	 $("li.shopli").mouseout(function()
+	 {     $(this).css("background-color","#ffffff")
+	 });
+	  
+  });
+ 
+</script>
+</head>
+<body>
+
+    <center>
+   <div class="div1">
+      <!--logo-->
+       <div class="div2">
+	       <a href="" alt="金风细雨" title="金风细雨楼">
+	          <img src="image\index_head\logo.jpg" style="width:100%;height:100%"/>
+	       </a>
+		</div>
+	         <!--logo-->
+	    <div class="div2" style="width:40%;margin-left:10px">
+		     <img src="image\index_head\header.jpg" style="width:100%;height:100%"/>
+		</div>
+	    <div class="div2" style="float:right;width:40%;">
+		   <!-- 登陆注册-->
+		    <div style="width:90%;height:50%;float:right;" class="div2">
+			     <ul style="float:left;margin-top:0px;">
+				    <li class="lis"><a href="#"><font class="font_set">登录 | </font></a></li>
+					<li class="lis"><a href=""><font class="font_set">注册 | </font></a></li>
+					<li class="lis"><a href=""><font class="font_set">会员中心 | </font></a></li>
+					 <li class="lis"><a href=""><font class="font_set">购物指南 | </font></a></li>
+					 <li class="lis"><a href=""><font class="font_set">关于我们 </font></a></li>
+				 </ul>
+			
+			</div>
+		    <div style="width:90%;height:40%;float:right" class="div2">
+			        <!-- 购物车-->
+					<div style="width:70%;height:100%;float:right" class="div2">
+					      <div style="background-color:#F8F8FF">电话热线:&nbsp;&nbsp;<strong>18711807001</strong></div>
+					</div>
+					<!--热线电话-->
+					<div style="width:20%;height:100%;float:right" class="div2">
+					   <div style="width:100%;height:100%">
+					       <img src="image\index_head\gowuche.png" style="width:20px;height:20px;"/>
+						   <a href=""><font class="font_set">购物车</font></a>
+					   </div>
+					</div>
+			</div>
+			
+		</div>
+		<!--一级导航栏-->
+		<div style="border:1px solid #ffffff;width:100%;height:50%;margin-top:50px;background-color:#000000">
+		    <ul>
+				  <li class="listyle"><a href="">  首页   |</a></li>
+				    <li class="listyle"><a href="">   手机   |</a></li>
+					<li class="listyle"><a href="">    家电  |</a></li>
+					<li class="listyle"><a href="">   数码产品  |</a></li>
+				    <li class="listyle"><a href="">   电视  |</a></li>
+					<li class="listyle"><a href="">   电脑  |</a></li>
+				 </ul>
+		</div>
+   </div>
+    <div class="search">
+	   <input type="text" name="message" id="message" maxlength="40" style="width:50%;"/><button>搜索</button>
+	 </div>
+     <div class="daohang">
+		<dl><dt>品牌：</dt><dd><a href="">iphone</a></dd><dd><a href="">华为</a></dd><dd><a href="">荣耀</a></dd><dd><a href="">小米</a></dd><dd><a href="">三星</a></dd><dd><a href="">opop</a></dd><dd><a href="">vovo</a></dd></dl><br/>
+	 </div>
+	 <div  class="shop">
+	           <ul>
+			     <li>
+				  <div><img src="image\phone\huawei\HUAWEI_NOVA\HUWEI_nova.jpg" style="width:100%;height:100%;"></div>
+				  <span><b>华为</b></span><br/>
+				   <span><b>60000</b></span>
+				 </li>
+				  <li>
+				  <div><img src="image\phone\huawei\HUAWEI_NOVA\HUWEI_nova.jpg" style="width:100%;height:100%;"></div>
+				  <span><b>华为</b></span><br/>
+				   <span><b>60000</b></span>
+				 </li>
+				  <li>
+				  <div><img src="image\phone\huawei\HUAWEI_NOVA\HUWEI_nova.jpg" style="width:100%;height:100%;"></div>
+				  <span><b>华为</b></span><br/>
+				   <span><b>60000</b></span>
+				 </li>
+				  <li>
+				  <div><img src="image\phone\huawei\HUAWEI_NOVA\HUWEI_nova.jpg" style="width:100%;height:100%;"></div>
+				  <span><b>华为</b></span><br/>
+				   <span><b>60000</b></span>
+				 </li>
+				  <li>
+				  <div><img src="image\phone\huawei\HUAWEI_NOVA\HUWEI_nova.jpg" style="width:100%;height:100%;"></div>
+				  <span><b>华为</b></span><br/>
+				   <span><b>60000</b></span>
+				 </li>
+				  <li>
+				  <div><img src="image\phone\huawei\HUAWEI_NOVA\HUWEI_nova.jpg" style="width:100%;height:100%;"></div>
+				  <span><b>华为</b></span><br/>
+				   <span><b>60000</b></span>
+				 </li>
+				  <li>
+				  <div><img src="image\phone\huawei\HUAWEI_NOVA\HUWEI_nova.jpg" style="width:100%;height:100%;"></div>
+				  <span><b>华为</b></span><br/>
+				   <span><b>60000</b></span>
+				 </li>
+				  <li>
+				  <div><img src="image\phone\huawei\HUAWEI_NOVA\HUWEI_nova.jpg" style="width:100%;height:100%;"></div>
+				  <span><b>华为</b></span><br/>
+				   <span><b>60000</b></span>
+				 </li>
+				  <li>
+				  <div><img src="image\phone\huawei\HUAWEI_NOVA\HUWEI_nova.jpg" style="width:100%;height:100%;"></div>
+				  <span><b>华为</b></span><br/>
+				   <span><b>60000</b></span>
+				 </li>
+				
+			   </ul>
+	 </div>
+	 <div style="width:78%;height:50px;border:1px solid red;"></div>
+     <div style="width:78%;height:30px;border:1px solid #ffffff;margin-top:10px;background-color:#C7C7C7">
+	      <div style="width:90%;height:100%;border:1px solid #ffffff;">
+		    <dl style="margin-left:100px;margin-top:10px">
+			    <dt style="float:left;background-color:#8F8F8F"><a href=""><font>购物指南   |</font></a></dt>
+				 <dd class="dd"><a href=""><font>支付方式      |</font></a></dd>
+				 <dd class="dd"><a href=""><font>配送方式      |</font></a></dd>
+				 <dd class="dd"><a href=""><font>销售方式      |</font></a></dd>
+			</dl>
+			  
+		  </div>
+	 
+	 </div>
+      <div style="width:78%;height:100px;border:1px solid #fffff;margin-top:10px #ccc;">
+	      <footer>
+		     <img src="image\index_head\footer.jpg"/>
+			 <div style>Copyright © 2018-2019 author lihuizhi</div>
+		  </footer>
+	  </div>
+   
+   </center>
+</body>
+</html>

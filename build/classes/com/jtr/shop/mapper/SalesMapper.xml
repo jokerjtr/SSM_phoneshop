@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!--  销售统计-->
+<mapper namespace="com.jtr.shop.mapper.SalesMapper">
+	<select id="findsales"
+		parameterType="com.jtr.shop.Domain.SalesProdes"
+		resultType="com.jtr.shop.Domain.SalesProdes">
+		SELECT orders.goods_id as id,goods.goods_name as name,band.band_name as
+		bandname,SUM(orders.goods_number) as number
+		FROM band,goods,orders <include refid="show"></include>
+	</select>
+	<sql id="show">
+	   <where>
+	      <if test='showbandname!=null and showbandname!="*"'>
+	         and band.band_name=#{showbandname}
+	      </if>
+	       and band.band_id=goods.band_id and
+		   goods.goods_id=orders.goods_id 
+		   GROUP BY band.band_name,orders.goods_id,goods.goods_name 
+		   <if test='desc=="0"'> ORDER BY SUM(orders.goods_number) DESC</if><!--  降序-->
+		   <if test='desc=="1"'> ORDER BY SUM(orders.goods_number)</if><!--升序  -->
+		   LIMIT #{page.statrIndex},#{page.pageSize}
+	   </where>
+	</sql>
+	<!-- 查找订单的总数 -->
+	<select id="findtotal" parameterType="com.jtr.shop.Domain.SalesProdes" resultType="java.lang.Integer">
+	     SELECT COUNT(DISTINCT(orders.goods_id)) as total FROM orders,band,goods 
+	     <where>
+	          <if test='showbandname!="*"'>
+	              and band.band_name=#{showbandname}
+	          </if>
+	           and band.band_id=goods.band_id and goods.goods_id=orders.goods_id
+	     </where>
+	     
+	</select>
+</mapper>

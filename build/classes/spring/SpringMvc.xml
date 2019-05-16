@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"  
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:p="http://www.springframework.org/schema/p" 
+    xmlns:context="http://www.springframework.org/schema/context" 
+    xmlns:mvc="http://www.springframework.org/schema/mvc" 
+    xmlns:task="http://www.springframework.org/schema/task"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans 
+        http://www.springframework.org/schema/beans/spring-beans-4.2.xsd 
+        http://www.springframework.org/schema/context 
+        http://www.springframework.org/schema/context/spring-context-4.2.xsd 
+        http://www.springframework.org/schema/mvc 
+        http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd 
+        http://www.springframework.org/schema/task 
+        http://www.springframework.org/schema/task/spring-task-4.2.xsd">
+         
+         <!-- 注解映射器 -->
+        <!--  <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping"></bean>
+         <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter"></bean> -->
+          
+       
+         <mvc:annotation-driven></mvc:annotation-driven> 
+         <!--解决ajax中文乱码码问题  -->
+	
+
+         <!--  组扫描Handler-->
+         <context:component-scan base-package="com.jtr.shop.controller"></context:component-scan>
+         <!-- 视图解析器 -->
+         <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+            
+         </bean>
+         <!--文件上传  -->
+         <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+	         <property name="defaultEncoding" value="UTF-8"></property>
+	         <property name="maxUploadSize" value="1024000"></property>
+	     </bean>
+	<!-- Spring mvc拦截器的使用 -->
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/**" />
+			<!-- 放行去首页，去登录，去注册页面，和登录注测url -->
+			<mvc:exclude-mapping path="/toindex.action" />
+			<mvc:exclude-mapping path="/tologin.action" />
+			<mvc:exclude-mapping path="/toregist.action" />
+			<mvc:exclude-mapping path="/login.action" />
+			<mvc:exclude-mapping path="/regist.action" />
+			<!-- ajax验证 -->
+			<mvc:exclude-mapping path="/exits.action" />
+			<mvc:exclude-mapping path="/findenname.action" />
+			<mvc:exclude-mapping path="/tososuoshop.action" />
+			<mvc:exclude-mapping path="/toadminlogin.action" />
+			<!-- <mvc:exclude-mapping path="/sherachshopbandorname.action"/> -->
+			<mvc:exclude-mapping path="/admin/*"/>
+			<bean class="com.jtr.shop.Interfactor.LoginInterfactor"></bean>
+
+		</mvc:interceptor>
+		<mvc:interceptor>
+		   <mvc:mapping path="/admin/*"/>
+		   <mvc:exclude-mapping path="/admin/toadmin.action"/>
+		   <mvc:exclude-mapping path="/admin/tologin.action"/>
+		   
+		   <bean class="com.jtr.shop.Interfactor.AdminLoginfactor"></bean>
+		</mvc:interceptor>
+
+	</mvc:interceptors>
+       
+       
+ </beans>

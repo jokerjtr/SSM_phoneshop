@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jtr.shop.mapper.ShopMapper">
+<!--  更具品牌名来搜索所有品牌下所有商品-->
+   <select id="findBybandName" parameterType="com.jtr.shop.Domain.goods" resultMap="findser">
+       select * from goods,band where band.band_id=goods.band_id and band_name=#{band.band_name}
+   </select>
+   <resultMap type="com.jtr.shop.Domain.goods" id="findser">
+	<id column="goods_id" property="goods_id" />
+	<result column="goods_name" property="goods_name" />
+	<result column="goods_price" property="goods_price" />
+	<result column="goods_stock" property="goods_stock" />
+	<result column="goods_image" property="goods_image" />
+	<result column="goods_url" property="goods_url" />
+	<result column="goods_netword" property="goods_netword" />
+	<result column="band_id" property="band_id" />
+	<result column="goods_dist" property="goods_dist" />
+	<result column="goods_cupsize" property="goods_cupsize" />
+	<result column="goods_color" property="goods_color" />
+	<result column="goods_pickhead" property="goods_pickhead" />
+	<result column="goods_os" property="goods_os" />
+	<result column="goods_cupname" property="goods_cupname" />
+	<result column="goods_screnn" property="goods_screnn" />
+	<result column="goods_power" property="goods_power" />
+	<result column="goods_height" property="goods_status" />
+	<association property="band" javaType="com.jtr.shop.Domain.Band">
+	    <id column="band_id(1)" property="band_id"/>
+	    <result column="band_name" property="band_name"/>
+	        <result column="en_name" property="en_name"/>
+	            <result column="band_logo" property="band_logo"/>
+	</association>
+</resultMap>
+     
+  <!--   按照产品名字准确查询 -->
+    <select id="findByGoodsName" parameterType="com.jtr.shop.Domain.goodsPxoyVo" resultType="com.jtr.shop.Domain.goodsCustor">
+       SELECT * FROM goods WHERE goods_name=#{goodsCustor.goods_name}
+    </select>
+   <!--  更据产品id查找 -->
+    <select id="findByGoodsId" parameterType="com.jtr.shop.Domain.goodsPxoyVo" resultType="com.jtr.shop.Domain.goodsCustor">
+        SELECT * FROM goods where goods_id=#{goodsCustor.goods_id}
+    </select> 
+    <!-- 热卖品-->
+    <select id="findGoodsolad" parameterType="com.jtr.shop.Domain.goodsPxoyVo" resultType="com.jtr.shop.Domain.goodsCustor">
+       SELECT * FROM goods WHERE goods_status=#{goodsCustor.goods_status}
+    </select>
+    <!--查询产品名称-->
+    <select id="findGoodsDistnct" parameterType="java.lang.String" resultType="java.lang.String">
+       SELECT DISTINCT(goods_name) FROM goods WHERE goods_name=#{goods_name}
+    </select>
+    <!-- 查询产品下的图片 -->
+    <select id="findGoodsDistnctimage" parameterType="java.lang.String" resultType="java.lang.String">
+         SELECT DISTINCT(goods_image) FROM goods WHERE goods_name=#{goods_name}
+    </select>
+    <!--查询产品下的所有颜色  -->
+    <select id="findGoodsDistnctColor" parameterType="java.lang.String" resultType="java.lang.String">
+        SELECT DISTINCT(goods_color) FROM goods WHERE goods_name=#{goods_name}
+    </select>
+    <!-- 查询产品下的所有内存 -->
+    <select id="findGoodsDistnctRAM" parameterType="java.lang.String" resultType="java.lang.String">
+        SELECT DISTINCT(goods_netword) FROM goods WHERE goods_name=#{goods_name}
+    </select>
+    <!-- 根据商品的颜色来确定价格 -->
+    <sql id="findmoney">
+        <where>
+             
+              <if test="goods_color!=null and goods_color!=''">
+                and goods_color=#{goods_color}
+              </if>
+              <if test="goods_netword!=null and goods_netword!=''">
+               and goods_netword=#{goods_netword}
+              </if>
+               and goods_name=#{goods_name}
+        </where>
+    </sql>
+    <select id="findmoneyBycolorOrRam" parameterType="com.jtr.shop.Domain.goods" resultType="java.lang.Double">
+         SELECT goods_price FROM goods 
+         <include refid="findmoney"></include>
+    </select>
+    <select id="findBygoodsnameAndRamAndColor" parameterType="com.jtr.shop.Domain.goods" resultType="java.lang.String">
+       SELECT goods_id FROM goods WHERE goods_name=#{goods_name}  and goods_netword=#{goods_netword} and goods_color=#{goods_color}
+    </select>
+    <select id="findBybandEnName" parameterType="java.lang.String" resultType="com.jtr.shop.Domain.goods">
+         select goods.* FROM goods,band WHERE goods.band_id=band.band_id and band.en_name=#{en_name} 
+    </select>
+    <!-- 查询商品总数 -->
+    <select id="findCount" resultType="java.lang.Integer">
+       SELECT count(*) FROM goods
+    </select>
+    <!-- 查询商品后分页显示 -->
+    <select id="findtotalgoodsPage" parameterType="com.jtr.shop.Domain.goodsCustor" resultType="com.jtr.shop.Domain.goodsCustor">
+       SELECT * FROM goods  LIMIT #{page.statrIndex},#{page.pageSize}
+    </select>
+    <!--查询品牌的总总数  -->
+     <select id="findByBandnameCount" parameterType="com.jtr.shop.Domain.goodsCustor" resultType="java.lang.Integer">
+          SELECT count(*) FROM goods,band WHERE goods.band_id=band.band_id and band.band_name=#{band.band_name}
+    </select>
+    <!-- 查询品牌下的所有商品，在进行分页显示 -->
+    <select id="findByBandnamePage" parameterType="com.jtr.shop.Domain.goodsCustor" resultMap="findbandgoods">
+        SELECT * FROM goods,band WHERE goods.band_id=band.band_id and band.band_name=#{band.band_name} LIMIT #{page.statrIndex},#{page.pageSize}
+    </select>
+    <!-- 查询产品（模糊查询）总数 -->
+    <select id="findgoodscountBygoodsNameLike" parameterType="com.jtr.shop.Domain.goodsCustor" resultType="java.lang.Integer">
+        SELECT count(*) from goods WHERE goods_name like "${goods_name}%"
+    </select>
+    <!--分页查询产品 -->
+    <select id="findgoodsPageBygoodsNameLike" parameterType="com.jtr.shop.Domain.goodsCustor" resultType="com.jtr.shop.Domain.goodsCustor">
+           SELECT * FROM goods WHERE goods_name LIKE "${goods_name}%"  LIMIT #{page.statrIndex},#{page.pageSize}
+     
+    </select>
+    <resultMap type="com.jtr.shop.Domain.goodsCustor" id="findbandgoods">
+	<id column="goods_id" property="goods_id" />
+	<result column="goods_name" property="goods_name" />
+	<result column="goods_price" property="goods_price" />
+	<result column="goods_stock" property="goods_stock" />
+	<result column="goods_image" property="goods_image" />
+	<result column="goods_url" property="goods_url" />
+	<result column="goods_netword" property="goods_netword" />
+	<result column="band_id" property="band_id" />
+	<result column="goods_dist" property="goods_dist" />
+	<result column="goods_cupsize" property="goods_cupsize" />
+	<result column="goods_color" property="goods_color" />
+	<result column="goods_pickhead" property="goods_pickhead" />
+	<result column="goods_os" property="goods_os" />
+	<result column="goods_cupname" property="goods_cupname" />
+	<result column="goods_screnn" property="goods_screnn" />
+	<result column="goods_power" property="goods_power" />
+	<result column="goods_height" property="goods_status" />
+	<association property="band" javaType="com.jtr.shop.Domain.Band">
+	    <id column="band_id(1)" property="band_id"/>
+	    <result column="band_name" property="band_name"/>
+	        <result column="en_name" property="en_name"/>
+	            <result column="band_logo" property="band_logo"/>
+	</association>
+	
+	 
+</resultMap>
+   <!--更具用户id删除产品  -->
+   <delete id="deleteGoods" parameterType="java.lang.String">
+      DELETE FROM goods WHERE goods_id=#{goods_id}
+   </delete>
+   <!-- 确认订单后，更行商品销售 -->
+   <update id="updateSalenumber" parameterType="com.jtr.shop.Domain.goodsCustor">
+      UPDATE goods SET sale_number=#{number}+sale_number WHERE goods_id=#{goods_id}
+   </update>
+   <!-- 查询最后一个产品编号 -->
+  <select id="findlastid" resultType="java.lang.String">
+        SELECT  goods_id FROM goods  ORDER BY goods_id  DESC LIMIT 0,1
+  </select>
+  <!-- 插入数据 -->
+  <insert id="inserdate" parameterType="com.jtr.shop.Domain.goodsCustor">
+       INSERT INTO goods(goods_id,goods_name,goods_price,goods_stock,goods_image,goods_netword,band_id,goods_color,goods_status)
+       VALUES(#{goods_id},#{goods_name},#{goods_price},#{goods_stock},#{goods_image},#{goods_netword},#{band_id},#{goods_color},#{goods_status})
+  </insert>
+   
+
+
+</mapper>

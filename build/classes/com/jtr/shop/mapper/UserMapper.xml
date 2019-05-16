@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jtr.shop.mapper.UserMapper">
+	<!-- 根据用户名查找用户 -->
+	<!-- private String user_name;//用户姓名 private String user_password;//用户密码 
+		private String email;//email private String name;//姓名 private String sex;//性别 
+		private String user_phone;//电话号码 -->
+       <select id="findUserByName" parameterType="com.jtr.shop.Domain.UserPxoyVo" resultType="com.jtr.shop.Domain.UserCustor">
+            SELECT * FROM `user`  WHERE user_name=#{userCustor.user_name}
+       </select>
+       <select id="findUserById" parameterType="com.jtr.shop.Domain.UserPxoyVo" resultType="com.jtr.shop.Domain.UserCustor">
+          SELECT * FROM `user`  WHERE user_name=#{userCustor.user_name}
+       </select>
+       <!-- 插入用户数据 -->
+	<insert id="insertUser"
+		parameterType="com.jtr.shop.Domain.UserPxoyVo">
+		INSERT INTO
+		user(user_name,user_password,user_email,name,sex,user_phone,user_address)
+		VALUES(#{userCustor.user_name},
+		#{userCustor.user_password},
+		#{userCustor.user_email},#{userCustor.name},
+		#{userCustor.sex},#{userCustor.user_phone},#{userCustor.user_address})
+	</insert>
+	<!--  更新用户-->
+	<update id="updateUser" parameterType="com.jtr.shop.Domain.UserPxoyVo">
+	     update user set user_name=#{userCustor.user_name},user_password=#{userCustor.user_password},
+	     user_email=#{userCustor.user_email},name=#{userCustor.name},sex=#{userCustor.sex},user_phone=#{userCustor.user_phone},
+	     user_address=#{userCustor.user_address} WHERE user_id=#{userCustor.user_id}
+	</update>
+	<update id="updateUserByid" parameterType="com.jtr.shop.Domain.UserPxoyVo">
+	    UPDATE `user` set name=#{userCustor.name},
+	    sex=#{userCustor.sex},user_address=#{userCustor.user_address},
+	    user_phone=#{userCustor.user_phone},user_email=#{userCustor.user_email},
+	    user_password=#{userCustor.user_password} where user_id=#{userCustor.user_id}
+	</update>
+	<!-- 删除用户 -->
+	<delete id="deleteUserById" parameterType="java.lang.Integer">
+	   DELETE FROM user WHERE user_id=#{user_id}
+	</delete>
+	<!-- 登录-->
+	<select id="findUserByNameAndPassword" parameterType="com.jtr.shop.Domain.UserPxoyVo" resultType="com.jtr.shop.Domain.UserCustor">
+	     select * from user where user_name=#{userCustor.user_name} and user_password=#{userCustor.user_password}
+	</select>
+	
+</mapper>

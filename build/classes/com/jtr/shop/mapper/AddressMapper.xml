@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jtr.shop.mapper.AddressMapper">
+     <insert id="insertmessage" parameterType="com.jtr.shop.Domain.Address">
+         INSERT INTO address(name,addr_detail,telphone,user_id) VALUES(#{name},#{addr_detail},#{telphone},#{user_id})
+     </insert>
+     <update id="updatemessage" parameterType="com.jtr.shop.Domain.Address">
+        UPDATE address  SET name=#{name},addr_detail=#{addr_detail},telphone=#{telphone} WHERE user_id=#{user_id}
+     </update>
+     <delete id="deletemessage" parameterType="java.lang.Integer">
+         DELETE FROM address WHERE user_id=#{user_id}
+     </delete>
+     <select id="findmessage" parameterType="java.lang.Integer" resultType="com.jtr.shop.Domain.Address">
+         SELECT * FROM address WHERE user_id=#{user_id}
+     
+     </select>
+</mapper>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jtr.shop.mapper.OrdersMapper">
+    <!--  订单类-->
+     <insert id="insertOrder" parameterType="com.jtr.shop.Domain.Orders">
+          
+     INSERT INTO orders(order_id,user_id,goods_id,goods_number,goods_money,goods_total_money,addr_id,pay_type,send_type,orders_status,order_time,remark)
+     VALUES(#{order_id},#{user_id},#{goods_id},#{goods_number},#{goods_money},#{goods_total_money},#{addr_id},#{pay_type},#{send_type},#{order_status},#{order_time},#{remark})
+     </insert>
+     <!-- 确认订单后更新订单 -->
+     <update id="updateorders" parameterType="com.jtr.shop.Domain.Orders">
+        UPDATE orders SET send_type=#{send_type},orders_status=#{order_status} WHERE order_id=#{order_id}
+     </update>
+</mapper>
